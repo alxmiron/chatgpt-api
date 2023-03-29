@@ -5,6 +5,7 @@
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "repository": "alxmiron/chatgpt-api",
   "license": "MIT",
+  "private": false,
   "type": "module",
   "source": "./src/index.ts",
   "types": "./build/index.d.ts",
