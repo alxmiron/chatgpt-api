@@ -10,6 +10,8 @@ export type ChatGPTAPIOptions = {
   /** @defaultValue `'https://api.openai.com'` **/
   apiBaseUrl?: string
 
+  apiOrg?: string
+
   /** @defaultValue `false` **/
   debug?: boolean
 
@@ -36,6 +38,7 @@ export type SendMessageOptions = {
   /** The name of a user in a multi-user chat. */
   name?: string
   parentMessageId?: string
+  conversationId?: string
   messageId?: string
   stream?: boolean
   systemMessage?: string
@@ -59,16 +62,6 @@ export type SendMessageBrowserOptions = {
   abortSignal?: AbortSignal
 }
 
-interface CreateChatCompletionStreamResponse
-  extends openai.CreateChatCompletionDeltaResponse {
-  usage: CreateCompletionStreamResponseUsage
-}
-
-interface CreateCompletionStreamResponseUsage
-  extends openai.CreateCompletionResponseUsage {
-  estimated: true
-}
-
 export interface ChatMessage {
   id: string
   text: string
@@ -81,7 +74,8 @@ export interface ChatMessage {
 
   // relevant for both ChatGPTAPI and ChatGPTUnofficialProxyAPI
   parentMessageId?: string
-  // only relevant for ChatGPTUnofficialProxyAPI
+
+  // only relevant for ChatGPTUnofficialProxyAPI (optional for ChatGPTAPI)
   conversationId?: string
 }
 
@@ -97,6 +91,16 @@ export type GetMessageByIdFunction = (id: string) => Promise<ChatMessage>
 
 /** Upserts a chat message to a store. */
 export type UpsertMessageFunction = (message: ChatMessage) => Promise<void>
+
+export interface CreateChatCompletionStreamResponse
+  extends openai.CreateChatCompletionDeltaResponse {
+  usage: CreateCompletionStreamResponseUsage
+}
+
+export interface CreateCompletionStreamResponseUsage
+  extends openai.CreateCompletionResponseUsage {
+  estimated: true
+}
 
 /**
  * https://chat.openapi.com/backend-api/conversation
