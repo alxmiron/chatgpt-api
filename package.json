@@ -1,6 +1,6 @@
 {
   "name": "@chattiebot/chatgpt",
-  "version": "5.2.2",
+  "version": "5.2.3",
   "description": "Node.js client for the official ChatGPT API.",
   "author": "Travis Fischer <travis@transitivebullsh.it>",
   "repository": "alxmiron/chatgpt-api",
