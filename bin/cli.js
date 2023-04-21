@@ -24,7 +24,7 @@ async function main() {
       default: false
     })
     .option('-s, --stream', 'Streams the response', {
-      default: true
+      default: false
     })
     .option('-s, --store', 'Enables the local message cache', {
       default: true
